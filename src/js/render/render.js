@@ -17,6 +17,15 @@ function createDOM({
   return element;
 }
 
+function renderAppWrapper() {
+  const appWrapper = createDOM({
+    id: "app-wrapper",
+    classArr: ["wrapper"],
+  });
+
+  return appWrapper;
+}
+
 function renderNavbar() {
   const navbar = createDOM({
     id: "navbar",
@@ -63,4 +72,4 @@ function renderContent() {
   return content;
 }
 
-export { renderNavbar, renderContent };
+export { renderNavbar, renderContent, renderAppWrapper };
