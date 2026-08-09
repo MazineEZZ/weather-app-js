@@ -18,13 +18,14 @@ function getWeatherDetails(json) {
 
   const currCond = json.currentConditions;
 
-  weatherDetails["name"] = json.address;
+  weatherDetails["city-name"] = json.address;
   weatherDetails["description"] = json.description;
   weatherDetails["conditions"] = currCond.conditions;
   weatherDetails["temperature"] = appState.convertTemp(currCond.temp);
   weatherDetails["rain-probability"] = currCond.precipprob;
   weatherDetails["humidity"] = currCond.humidity;
   weatherDetails["uvindex"] = currCond.uvindex;
+  weatherDetails["icon"] = currCond.icon;
   weatherDetails["sunrise"] = currCond.sunrise;
   weatherDetails["sunset"] = currCond.sunset;
   weatherDetails["windspeed"] = currCond.windspeed;
