@@ -13,13 +13,13 @@ async function searchWeather() {
   refreshPage();
 }
 
-function getWeatherDetails(string) {
+function getWeatherDetails(json) {
   const weatherDetails = {};
 
-  const currCond = string.currentConditions;
+  const currCond = json.currentConditions;
 
-  weatherDetails["name"] = string.address;
-  weatherDetails["description"] = string.description;
+  weatherDetails["name"] = json.address;
+  weatherDetails["description"] = json.description;
   weatherDetails["conditions"] = currCond.conditions;
   weatherDetails["temperature"] = appState.convertTemp(currCond.temp);
   weatherDetails["rain-probability"] = currCond.precipprob;

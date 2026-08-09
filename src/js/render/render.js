@@ -16,8 +16,8 @@ function createDOM({
   if (type) element.type = type;
   if (name) element.classList.add(name);
   if (text) element.textContent = text;
-  if (classArr != []) classArr.forEach((cls) => element.classList.add(cls));
   if (placeholder) element.placeholder = placeholder;
+  classArr.forEach((cls) => element.classList.add(cls));
 
   return element;
 }

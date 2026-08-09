@@ -1,5 +1,5 @@
 function round(num, digits) {
-  return Math.round(num * 10 * digits) / (10 * digits);
+  return Math.round(num * 10 ** digits) / 10 ** digits;
 }
 
 function convertToFahrenheit(temp) {
@@ -10,10 +10,14 @@ function convertToCelsius(temp) {
   return round(((temp - 32) * 5) / 9, 2);
 }
 
-function capitalize(word) {
-  return (
-    word[0].toUpperCase() + word.split("").splice(1).join("").toLowerCase()
-  );
+function capitalize(sentence) {
+  return sentence
+    .split(" ")
+    .map(
+      (word) =>
+        word[0].toUpperCase() + word.split("").splice(1).join("").toLowerCase(),
+    )
+    .join(" ");
 }
 
 export { convertToCelsius, convertToFahrenheit, capitalize };
