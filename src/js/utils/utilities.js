@@ -1,13 +1,13 @@
 function round(num, digits) {
-  return Math.round(num * 10 ** digits) / 10 ** digits;
+  return Math.floor(num * 10 ** digits) / 10 ** digits;
 }
 
 function convertToFahrenheit(temp) {
-  return round((temp * 9) / 5 + 32, 2);
+  return round((temp * 9) / 5 + 32, 0);
 }
 
 function convertToCelsius(temp) {
-  return round(((temp - 32) * 5) / 9, 2);
+  return round(((temp - 32) * 5) / 9, 0);
 }
 
 function capitalize(sentence) {

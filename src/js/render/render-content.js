@@ -1,13 +1,16 @@
-import { createDOM } from "./render-hub";
 import { appState } from "../global/state";
+import { createDOM } from "../utils/dom-utils";
 
 function createCondContainer(weather) {
   const condContainer = createDOM({
     id: "condition-container",
+    classArr: ["container"],
     same: true,
   });
 
-  const primaryDetails = createDOM();
+  const details = createDOM({
+    classArr: ["details"],
+  });
 
   const icon = createDOM({
     kind: "img",
@@ -18,11 +21,11 @@ function createCondContainer(weather) {
   const temp = createDOM({
     id: "temp",
     same: true,
-    text: weather["temperature"],
+    text: weather["temperature"] + "°C",
   });
 
-  primaryDetails.appendChild(icon);
-  primaryDetails.appendChild(temp);
+  details.appendChild(icon);
+  details.appendChild(temp);
 
   const condition = createDOM({
     classArr: ["conditions"],
@@ -38,7 +41,7 @@ function createCondContainer(weather) {
     text: weather["city-name"],
   });
 
-  condContainer.appendChild(primaryDetails);
+  condContainer.appendChild(details);
   condContainer.appendChild(condition);
   condContainer.appendChild(lineBreaker);
   condContainer.appendChild(cityName);
@@ -48,7 +51,8 @@ function createCondContainer(weather) {
 
 function createHighlightContainer(weather) {
   const hlContainer = createDOM({
-    id: "high-container",
+    id: "hl-container",
+    classArr: ["container"],
     same: true,
   });
 
@@ -60,7 +64,9 @@ function createHighlightContainer(weather) {
   ];
 
   features.forEach((feat, i) => {
-    const container = createDOM();
+    const container = createDOM({
+      classArr: ["subcontainer"],
+    });
 
     const title = createDOM({
       classArr: ["title"],
@@ -84,6 +90,7 @@ function createHighlightContainer(weather) {
 function createForecastContainer(weather) {
   const forecastContainer = createDOM({
     id: "forecast-container",
+    classArr: ["container"],
     same: true,
   });
 
@@ -105,6 +112,7 @@ function createForecastContainer(weather) {
 function createMapContainer(weather) {
   const mapContainer = createDOM({
     id: "map-container",
+    classArr: ["container"],
     same: true,
   });
 

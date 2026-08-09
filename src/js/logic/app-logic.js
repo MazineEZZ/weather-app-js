@@ -1,8 +1,10 @@
 import { setUpEventListeners } from "../events/event-listener";
 import { appState } from "../global/state";
-import { renderContent } from "../render/render-content";
-import { renderAppWrapper } from "../render/render-hub";
-import { renderNavbar } from "../render/render-navbar";
+import {
+  renderAppWrapper,
+  renderContent,
+  renderNavbar,
+} from "../render/render-hub";
 import { convertToCelsius } from "../utils/utilities";
 
 function refreshPage() {

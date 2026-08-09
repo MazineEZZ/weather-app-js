@@ -8,10 +8,10 @@ function renderNavbar() {
   });
 
   const logo = createDOM({
-    kind: "img",
+    kind: "h1",
     id: "logo",
     same: true,
-    text: "LOGO",
+    text: "Weatherz",
   });
 
   const container = createDOM({
