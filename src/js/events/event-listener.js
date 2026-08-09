@@ -18,17 +18,35 @@ function getWeatherDetails(json) {
 
   const currCond = json.currentConditions;
 
+  console.log(json);
+
+  // Condtions
   weatherDetails["city-name"] = json.address;
-  weatherDetails["description"] = json.description;
+  weatherDetails["desc"] = json.description;
   weatherDetails["conditions"] = currCond.conditions;
-  weatherDetails["temperature"] = appState.convertTemp(currCond.temp);
+  weatherDetails["temp"] = appState.convertTemp(currCond.temp);
+  weatherDetails["icon"] = currCond.icon;
+
+  // Highlights
+  weatherDetails["windspeed"] = currCond.windspeed;
   weatherDetails["rain-probability"] = currCond.precipprob;
   weatherDetails["humidity"] = currCond.humidity;
   weatherDetails["uvindex"] = currCond.uvindex;
-  weatherDetails["icon"] = currCond.icon;
   weatherDetails["sunrise"] = currCond.sunrise;
   weatherDetails["sunset"] = currCond.sunset;
-  weatherDetails["windspeed"] = currCond.windspeed;
+
+  // Forecast
+  weatherDetails["forecast"] = json.days
+    .map((day) => {
+      const newDayObj = {};
+      newDayObj["icon"] = day.icon;
+      newDayObj["temp"] = appState.convertTemp(day.temp);
+      newDayObj["date"] = day.datetime;
+      // newDayObj["day-name"] = ;
+
+      return newDayObj;
+    })
+    .splice(1, 5);
 
   appState.weatherDetails = weatherDetails;
 }

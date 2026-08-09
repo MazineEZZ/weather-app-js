@@ -19,15 +19,17 @@ function createCondContainer(weather) {
   });
 
   const temp = createDOM({
+    kind: "p",
     id: "temp",
     same: true,
-    text: weather["temperature"] + "°C",
+    text: weather["temp"] + "°C",
   });
 
   details.appendChild(icon);
   details.appendChild(temp);
 
   const condition = createDOM({
+    kind: "p",
     classArr: ["conditions"],
     text: weather["conditions"],
   });
@@ -37,6 +39,7 @@ function createCondContainer(weather) {
   });
 
   const cityName = createDOM({
+    kind: "h4",
     classArr: ["city-name"],
     text: weather["city-name"],
   });
@@ -69,11 +72,13 @@ function createHighlightContainer(weather) {
     });
 
     const title = createDOM({
+      kind: "h3",
       classArr: ["title"],
       text: feat,
     });
 
     const data = createDOM({
+      kind: "p",
       classArr: ["data"],
       text: String(datas[i]),
     });
@@ -95,16 +100,62 @@ function createForecastContainer(weather) {
   });
 
   const title = createDOM({
+    kind: "h3",
     classArr: ["title"],
     text: "5 days Forecast",
   });
 
-  const content = createDOM({
-    text: "Under construction...",
+  const daysForecast = weather["forecast"];
+
+  const daysContainer = createDOM({
+    classArr: ["days-container"],
+  });
+
+  daysForecast.forEach((day) => {
+    const container = createDOM({
+      classArr: ["day-container"],
+    });
+
+    const iconD = createDOM({
+      kind: "img",
+      alt: day["icon"],
+    });
+
+    const tempD = createDOM({
+      kind: "p",
+      text: day["temp"],
+    });
+
+    const dateString = day["date"];
+
+    const date = new Date(dateString);
+
+    const dayNum = date.getDate();
+    const monthName = date.toLocaleDateString("en-US", { month: "short" });
+    const dayName = date.toLocaleDateString("en-US", { weekday: "long" });
+
+    const dateD = createDOM({
+      kind: "p",
+      classArr: ["date"],
+      text: `${dayNum} ${monthName}`,
+    });
+
+    const dayNameD = createDOM({
+      kind: "p",
+      classArr: ["date"],
+      text: dayName,
+    });
+
+    container.appendChild(iconD);
+    container.appendChild(tempD);
+    container.appendChild(dateD);
+    container.appendChild(dayNameD);
+
+    daysContainer.appendChild(container);
   });
 
   forecastContainer.appendChild(title);
-  forecastContainer.appendChild(content);
+  forecastContainer.appendChild(daysContainer);
 
   return forecastContainer;
 }
@@ -117,11 +168,13 @@ function createMapContainer(weather) {
   });
 
   const title = createDOM({
+    kind: "h3",
     classArr: ["title"],
     text: "Weather Condition Map",
   });
 
   const content = createDOM({
+    kind: "p",
     text: "Under construction...",
   });
 
@@ -141,6 +194,7 @@ function renderContent() {
 
   if (!cityWeather) {
     const error = createDOM({
+      kind: "p",
       classArr: ["error"],
       text: "Search for a city!",
     });
