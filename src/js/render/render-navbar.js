@@ -1,5 +1,5 @@
 import { appState } from "../global/state";
-import { createDOM } from "./render-hub";
+import { createDOM } from "../utils/dom-utils";
 
 function renderNavbar() {
   const navbar = createDOM({
