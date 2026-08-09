@@ -1,3 +1,6 @@
+import { appState } from "../global/state";
+import { capitalize } from "../utils/utilities";
+
 function createDOM({
   kind = "div",
   id = "",
@@ -5,6 +8,7 @@ function createDOM({
   classArr = [],
   type = "",
   text = "",
+  placeholder,
 } = {}) {
   const element = document.createElement(kind);
 
@@ -12,7 +16,8 @@ function createDOM({
   if (type) element.type = type;
   if (name) element.classList.add(name);
   if (text) element.textContent = text;
-  if (classArr !== []) classArr.forEach((cls) => element.classList.add(cls));
+  if (classArr != []) classArr.forEach((cls) => element.classList.add(cls));
+  if (placeholder) element.placeholder = placeholder;
 
   return element;
 }
@@ -36,6 +41,7 @@ function renderNavbar() {
     kind: "img",
     id: "logo",
     name: "logo",
+    text: "LOGO",
   });
 
   const container = createDOM({
@@ -46,16 +52,27 @@ function renderNavbar() {
     kind: "button",
     id: "toggle-temp",
     classArr: ["toggle-temp-btn", "toggler"],
+    text: "toggle",
   });
 
   const searchBar = createDOM({
     kind: "input",
     type: "search",
     id: "search-bar",
+    placeholder: "Search for a city's weather...",
   });
+
+  const searchBtn = createDOM({
+    kind: "button",
+    id: "search-btn",
+    text: "🔍",
+  });
+
+  appState.searchBar = searchBar;
 
   container.appendChild(toggleTemp);
   container.appendChild(searchBar);
+  container.appendChild(searchBtn);
 
   navbar.appendChild(logo);
   navbar.appendChild(container);
@@ -68,6 +85,38 @@ function renderContent() {
     id: "content",
     classArr: ["content", "wrapper"],
   });
+
+  const cityWeather = appState.weatherDetails;
+
+  if (!cityWeather) {
+    const error = createDOM({
+      name: "error",
+      text: "Search for a city!",
+    });
+
+    content.appendChild(error);
+
+    return content;
+  }
+
+  for (const prop in cityWeather) {
+    const container = createDOM();
+
+    const text = createDOM({
+      classArr: [`city-${prop}`, `text`],
+      text: capitalize(prop.split("-").join(" ")),
+    });
+
+    const value = createDOM({
+      classArr: [`city-${prop}`, "value"],
+      text: cityWeather[prop],
+    });
+
+    container.appendChild(text);
+    container.appendChild(value);
+
+    content.appendChild(container);
+  }
 
   return content;
 }
