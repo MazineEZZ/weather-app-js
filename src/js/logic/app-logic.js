@@ -9,6 +9,8 @@ import { round } from "../utils/utilities";
 
 function updateTemp() {
   const tempBoxes = document.querySelectorAll('[data-id="temp"]');
+  const toggleBtn = document.querySelector("#toggle-temp");
+  toggleBtn.textContent = "°" + appState.tempUnit;
 
   tempBoxes.forEach((tempBox) => {
     const tempValue = appState.convertTemp(tempBox.dataset.rawTemp);

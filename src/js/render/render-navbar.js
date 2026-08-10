@@ -22,7 +22,7 @@ function renderNavbar() {
     kind: "button",
     id: "toggle-temp",
     classArr: ["toggle-temp-btn", "toggler"],
-    text: "toggle",
+    text: "°" + appState.tempUnit,
   });
 
   const searchBar = createDOM({
