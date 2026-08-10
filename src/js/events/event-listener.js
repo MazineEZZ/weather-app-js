@@ -1,4 +1,4 @@
-import { fetchWeather } from "../api/weather-api";
+import { fetchWeatherCoords } from "../api/weather-api";
 import { appState } from "../global/state";
 import { refreshPage, updateTemp } from "../logic/app-logic";
 
@@ -7,7 +7,7 @@ async function searchWeather() {
 
   if (searchBar.value) {
     const city = searchBar.value.trim();
-    const result = await fetchWeather(city);
+    const result = await fetchWeatherCoords(city);
     getWeatherDetails(result);
   }
   refreshPage();
@@ -17,6 +17,10 @@ function getWeatherDetails(json) {
   const weatherDetails = {};
 
   const currCond = json.currentConditions;
+
+  // Coords
+  weatherDetails["lat"] = json.latitude;
+  weatherDetails["lon"] = json.longitude;
 
   // Condtions
   weatherDetails["city-name"] = json.address;

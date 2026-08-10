@@ -1,8 +1,8 @@
-import { API_KEY } from "../global/env";
+import { VS_API_KEY } from "../global/env";
 
-async function fetchWeather(city) {
+async function fetchWeatherCoords(city) {
   const response = await fetch(
-    `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?key=${API_KEY}`,
+    `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?key=${VS_API_KEY}`,
   );
 
   if (!response.ok) {
@@ -13,4 +13,4 @@ async function fetchWeather(city) {
   return await response.json();
 }
 
-export { fetchWeather };
+export { fetchWeatherCoords };

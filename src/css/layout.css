@@ -8,7 +8,7 @@ body {
   font-family: var(--font-inter);
   color: var(--clr-text-main);
 
-  overflow: hidden;
+  overflow-y: auto;
 }
 
 .app-wrapper {
@@ -47,5 +47,8 @@ body {
   padding: var(--space-xl);
 }
 
-.content .icon {
+.condition-container .icon,
+.forecast-container .icon {
+  width: clamp(24px, 4vh, 72px);
+  height: clamp(24px, 4vh, 72px);
 }

@@ -2,17 +2,14 @@
   /* COLOR PALETTE */
   --clr-bg-main: #ffffff;
   --clr-bg-surface: #f8f9fa;
-  --clr-hl-bg: #e9e9e9;
+  --clr-hl-bg: #eef1f4;
   --clr-primary: #469ffc;
-  --clr-text-primary: #114072;
   --clr-primary-hover: #3087e8;
+  --clr-text-primary: #114072;
   --clr-text-main: #0d0e11;
   --clr-text-muted: #64748b;
   --clr-border: #e2e8f0;
   --clr-danger: #ef4444;
-  --clr-prior-high: red;
-  --clr-prior-med: orange;
-  --clr-prior-low: rgb(64, 139, 224);
   --clr-sidebar: #f4f5f7;
   --clr-tab-hover: #e6e6e6;
   --clr-btn-hover: #d9d9d9;

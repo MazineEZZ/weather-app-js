@@ -240,13 +240,17 @@ function createMapContainer(weather) {
     text: "Weather Condition Map",
   });
 
-  const content = createDOM({
-    kind: "p",
-    text: "Under construction...",
+  const lat = weather["lat"];
+  const lon = weather["lon"];
+  const url = `https://embed.windy.com/embed2.html?lat=${lat}&lon=${lon}&detailLat=${lat}&detailLon=${lon}&width=600&height=400&zoom=7&level=surface&overlay=temp&product=ecmwf&menu=&message=&marker=true`;
+  const map = createDOM({
+    kind: "iframe",
+    src: url,
   });
+  map.loading = "lazy";
 
   mapContainer.appendChild(title);
-  mapContainer.appendChild(content);
+  mapContainer.appendChild(map);
 
   return mapContainer;
 }

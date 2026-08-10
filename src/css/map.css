@@ -1,0 +1,10 @@
+.map-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.map-container iframe {
+  flex: 1;
+  border: none;
+  border-radius: var(--radius-xl);
+}

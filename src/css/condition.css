@@ -15,7 +15,7 @@
 
 .condition-container .temp {
   flex: 1;
-  font-size: var(--fs-2xl);
+  font-size: clamp(1.75rem, 6vh, var(--fs-2mg));
   font-weight: var(--fw-semibold);
 }
 
@@ -35,6 +35,6 @@
 .condition-container hr {
   width: 100%;
   border: none;
-  border-top: 1px solid #e2e8f0;
+  border-top: 1px solid var(--clr-border);
   margin: var(--space-xs) 0;
 }
