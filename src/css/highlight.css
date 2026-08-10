@@ -1,11 +1,20 @@
 .hl-container {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
 
   gap: var(--space-sm);
 }
 
-.hl-container > .subcontainer {
+.hl-container .features-container {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+
+  gap: var(--space-sm);
+}
+
+.hl-container .subcontainer {
   flex: 1;
   display: flex;
   justify-content: space-between;
@@ -24,5 +33,17 @@
 
 .hl-container .subcontainer .data {
   font-size: var(--fs-xl);
-  font-weight: var(--fw-bold);
+  font-weight: var(--fw-semibold);
+}
+
+.hl-container .bottom-container {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-2xs);
+}
+
+.hl-container .unit {
+  margin-bottom: var(--space-2xs);
+
+  color: var(--clr-text-muted);
 }

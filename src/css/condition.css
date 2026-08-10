@@ -16,7 +16,7 @@
 .condition-container .temp {
   flex: 1;
   font-size: var(--fs-2xl);
-  font-weight: bold;
+  font-weight: var(--fw-semibold);
 }
 
 .condition-container .icon {

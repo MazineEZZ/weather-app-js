@@ -98,8 +98,19 @@ function createHighlightContainer(weather) {
     same: true,
   });
 
+  const title = createDOM({
+    kind: "h3",
+    classArr: ["title"],
+    text: "Today's Highlight",
+  });
+
   const features = ["Wind Status", "UV Index", "Sunrise & Sunset"];
   const datas = [weather["windspeed"], weather["uvindex"], "0"];
+  const dataUnits = ["km/h", "uv", ""];
+
+  const featuresContainer = createDOM({
+    classArr: ["features-container"],
+  });
 
   features.forEach((feat, i) => {
     const container = createDOM({
@@ -112,17 +123,33 @@ function createHighlightContainer(weather) {
       text: feat,
     });
 
+    const subcontainer = createDOM({
+      classArr: ["bottom-container"],
+    });
+
     const data = createDOM({
       kind: "p",
       classArr: ["data"],
       text: String(datas[i]),
     });
 
-    container.appendChild(title);
-    container.appendChild(data);
+    const dataUnit = createDOM({
+      kind: "p",
+      classArr: ["unit"],
+      text: dataUnits[i],
+    });
 
-    hlContainer.appendChild(container);
+    subcontainer.appendChild(data);
+    subcontainer.appendChild(dataUnit);
+
+    container.appendChild(title);
+    container.appendChild(subcontainer);
+
+    featuresContainer.appendChild(container);
   });
+
+  hlContainer.appendChild(title);
+  hlContainer.appendChild(featuresContainer);
 
   return hlContainer;
 }
@@ -160,6 +187,7 @@ function createForecastContainer(weather) {
 
     const tempD = createDOM({
       kind: "p",
+      classArr: ["temp"],
     });
     tempD.dataset.id = "temp";
     tempD.dataset.rawTemp = day["temp"];
