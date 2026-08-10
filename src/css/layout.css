@@ -1,7 +1,13 @@
 body {
+  background-color: var(--clr-bg-main);
+
   margin: 0;
   height: 100vh;
   width: 100vw;
+
+  font-family: var(--font-inter);
+  color: var(--clr-text-main);
+
   overflow: hidden;
 }
 
@@ -26,7 +32,7 @@ body {
 .content {
   display: grid;
   grid-template-columns: 3fr 7fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 1fr 2fr;
 
   height: 100%;
   gap: var(--space-md);
@@ -35,58 +41,11 @@ body {
 }
 
 .content > .container {
-  border: 1px solid;
-  padding: var(--space-xs);
-}
-/* CONDITION CONTAINER */
-.condition-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  background-color: var(--clr-bg-surface);
+
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
 }
 
-.condition-container > .details {
-  flex: 1;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+.content .icon {
 }
-
-/* HIGHLIGHT CONTAINER */
-.hl-container {
-  display: flex;
-  justify-content: space-between;
-
-  gap: var(--space-sm);
-}
-
-.hl-container > .subcontainer {
-  flex: 1;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: column;
-
-  border: 1px black solid;
-}
-
-/* FORECAST CONTAINER */
-.forecast-container {
-  display: flex;
-  flex-direction: column;
-}
-
-.forecast-container .day-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-
-  padding: var(--space-xs);
-}
-
-.forecast-container .day-container > * {
-  flex: 1;
-  text-align: start;
-}
-
-/* MAP CONTAINER */

@@ -1,0 +1,28 @@
+.hl-container {
+  display: flex;
+  justify-content: space-between;
+
+  gap: var(--space-sm);
+}
+
+.hl-container > .subcontainer {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+
+  background-color: var(--clr-hl-bg);
+
+  border-radius: var(--radius-xl);
+  padding: var(--space-md);
+}
+
+.hl-container .subcontainer .title {
+  font-weight: var(--fw-regular);
+}
+
+.hl-container .subcontainer .data {
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-bold);
+}

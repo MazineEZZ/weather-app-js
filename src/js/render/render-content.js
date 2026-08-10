@@ -1,5 +1,42 @@
 import { appState } from "../global/state";
 import { createDOM } from "../utils/dom-utils";
+import clearDay from "../../assets/icons/clear-day.svg";
+import clearNight from "../../assets/icons/clear-night.svg";
+import rain from "../../assets/icons/rainy-2.svg";
+import snow from "../../assets/icons/snowy-2.svg";
+import sleet from "../../assets/icons/rain-and-sleet-mix.svg";
+import wind from "../../assets/icons/wind.svg";
+import fog from "../../assets/icons/fog.svg";
+import cloudy from "../../assets/icons/cloudy.svg";
+import partlyCloudyDay from "../../assets/icons/cloudy-2-day.svg";
+import partlyCloudyNight from "../../assets/icons/cloudy-2-night.svg";
+import hail from "../../assets/icons/hail.svg";
+import thunder from "../../assets/icons/thunderstorms.svg";
+import thunderRain from "../../assets/icons/severe-thunderstorm.svg";
+import thunderShowersDay from "../../assets/icons/scattered-thunderstorms-day.svg";
+import thunderShowersNight from "../../assets/icons/scattered-thunderstorms-night.svg";
+import showersDay from "../../assets/icons/rainy-1-day.svg";
+import showersNight from "../../assets/icons/rainy-1-night.svg";
+
+const iconMap = {
+  "clear-day": clearDay,
+  "clear-night": clearNight,
+  rain: rain,
+  snow: snow,
+  sleet: sleet,
+  wind: wind,
+  fog: fog,
+  cloudy: cloudy,
+  "partly-cloudy-day": partlyCloudyDay,
+  "partly-cloudy-night": partlyCloudyNight,
+  hail: hail,
+  thunder: thunder,
+  "thunder-rain": thunderRain,
+  "thunder-showers-day": thunderShowersDay,
+  "thunder-showers-night": thunderShowersNight,
+  "showers-day": showersDay,
+  "showers-night": showersNight,
+};
 
 function createCondContainer(weather) {
   const condContainer = createDOM({
@@ -14,6 +51,7 @@ function createCondContainer(weather) {
 
   const icon = createDOM({
     kind: "img",
+    src: iconMap[weather["icon"]] || iconMap["cloudy"],
     classArr: ["icon"],
     alt: weather["icon"],
   });
@@ -61,11 +99,7 @@ function createHighlightContainer(weather) {
   });
 
   const features = ["Wind Status", "UV Index", "Sunrise & Sunset"];
-  const datas = [
-    weather["windspeed"],
-    weather["uvindex"],
-    "Under Construction...",
-  ];
+  const datas = [weather["windspeed"], weather["uvindex"], "0"];
 
   features.forEach((feat, i) => {
     const container = createDOM({
@@ -73,7 +107,7 @@ function createHighlightContainer(weather) {
     });
 
     const title = createDOM({
-      kind: "h3",
+      kind: "p",
       classArr: ["title"],
       text: feat,
     });
@@ -119,6 +153,8 @@ function createForecastContainer(weather) {
 
     const iconD = createDOM({
       kind: "img",
+      classArr: ["icon"],
+      src: iconMap[day["icon"]] || iconMap["cloudy"],
       alt: day["icon"],
     });
 

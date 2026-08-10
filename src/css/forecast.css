@@ -1,0 +1,22 @@
+.forecast-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.forecast-container .day-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  padding: var(--space-xs);
+}
+
+.forecast-container .day-container > * {
+  flex: 1;
+  text-align: start;
+}
+
+.forecast-container .icon {
+  width: 30px;
+  height: 30px;
+}

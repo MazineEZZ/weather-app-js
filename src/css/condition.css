@@ -1,0 +1,40 @@
+.condition-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.condition-container > .details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: var(--space-xs);
+}
+
+.condition-container .temp {
+  flex: 1;
+  font-size: var(--fs-2xl);
+  font-weight: bold;
+}
+
+.condition-container .icon {
+  width: 72px;
+  height: 72px;
+}
+
+.condition-container .conditions {
+  font-size: var(--fs-base);
+}
+
+.condition-container .city-name {
+  font-size: var(--fs-lg);
+}
+
+.condition-container hr {
+  width: 100%;
+  border: none;
+  border-top: 1px solid #e2e8f0;
+  margin: var(--space-xs) 0;
+}
