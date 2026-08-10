@@ -1,6 +1,6 @@
 import { fetchWeather } from "../api/weather-api";
 import { appState } from "../global/state";
-import { refreshPage } from "../logic/app-logic";
+import { refreshPage, updateTemp } from "../logic/app-logic";
 
 async function searchWeather() {
   const searchBar = appState.searchBar;
@@ -18,13 +18,11 @@ function getWeatherDetails(json) {
 
   const currCond = json.currentConditions;
 
-  console.log(json);
-
   // Condtions
   weatherDetails["city-name"] = json.address;
   weatherDetails["desc"] = json.description;
   weatherDetails["conditions"] = currCond.conditions;
-  weatherDetails["temp"] = appState.convertTemp(currCond.temp);
+  weatherDetails["temp"] = currCond.temp;
   weatherDetails["icon"] = currCond.icon;
 
   // Highlights
@@ -40,9 +38,8 @@ function getWeatherDetails(json) {
     .map((day) => {
       const newDayObj = {};
       newDayObj["icon"] = day.icon;
-      newDayObj["temp"] = appState.convertTemp(day.temp);
+      newDayObj["temp"] = day.temp;
       newDayObj["date"] = day.datetime;
-      // newDayObj["day-name"] = ;
 
       return newDayObj;
     })
@@ -51,12 +48,21 @@ function getWeatherDetails(json) {
   appState.weatherDetails = weatherDetails;
 }
 
+function toggleTempMeasure() {
+  appState.tempUnit = appState.tempUnit === "C" ? "F" : "C";
+  updateTemp();
+}
+
 function setUpEventListeners() {
   const appWrapper = appState.appWrapper;
 
   appWrapper.addEventListener("click", (e) => {
     if (e.target.id === "search-btn") {
       searchWeather();
+    }
+
+    if (e.target.id === "toggle-temp") {
+      toggleTempMeasure();
     }
   });
 }

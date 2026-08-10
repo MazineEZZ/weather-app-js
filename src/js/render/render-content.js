@@ -22,8 +22,9 @@ function createCondContainer(weather) {
     kind: "p",
     id: "temp",
     same: true,
-    text: weather["temp"] + "°C",
   });
+  temp.dataset.id = "temp";
+  temp.dataset.rawTemp = weather["temp"];
 
   details.appendChild(icon);
   details.appendChild(temp);
@@ -123,8 +124,9 @@ function createForecastContainer(weather) {
 
     const tempD = createDOM({
       kind: "p",
-      text: day["temp"],
     });
+    tempD.dataset.id = "temp";
+    tempD.dataset.rawTemp = day["temp"];
 
     const dateString = day["date"];
 
@@ -160,6 +162,7 @@ function createForecastContainer(weather) {
   return forecastContainer;
 }
 
+// eslint-disable-next-line no-unused-vars
 function createMapContainer(weather) {
   const mapContainer = createDOM({
     id: "map-container",

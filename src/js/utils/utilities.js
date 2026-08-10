@@ -3,11 +3,11 @@ function round(num, digits) {
 }
 
 function convertToFahrenheit(temp) {
-  return round((temp * 9) / 5 + 32, 0);
+  return (parseInt(temp) * 9) / 5 + 32;
 }
 
 function convertToCelsius(temp) {
-  return round(((temp - 32) * 5) / 9, 0);
+  return (parseInt(temp) - 32) * (5 / 9);
 }
 
 function capitalize(sentence) {
@@ -20,4 +20,4 @@ function capitalize(sentence) {
     .join(" ");
 }
 
-export { convertToCelsius, convertToFahrenheit, capitalize };
+export { convertToCelsius, convertToFahrenheit, capitalize, round };

@@ -5,7 +5,16 @@ import {
   renderContent,
   renderNavbar,
 } from "../render/render-hub";
-import { convertToCelsius } from "../utils/utilities";
+import { round } from "../utils/utilities";
+
+function updateTemp() {
+  const tempBoxes = document.querySelectorAll('[data-id="temp"]');
+
+  tempBoxes.forEach((tempBox) => {
+    const tempValue = appState.convertTemp(tempBox.dataset.rawTemp);
+    tempBox.textContent = round(tempValue, 1) + "°" + appState.tempUnit;
+  });
+}
 
 function refreshPage() {
   const appWrapper = appState.appWrapper;
@@ -16,6 +25,8 @@ function refreshPage() {
 
   appWrapper.appendChild(navbar);
   appWrapper.appendChild(content);
+
+  updateTemp();
 }
 
 function initApp() {
@@ -29,11 +40,10 @@ function initApp() {
 
   // App State
   appState.appWrapper = appWrapper;
-  appState.convertTemp = (temp) => convertToCelsius(temp);
 
   setUpEventListeners();
 
   document.body.appendChild(appWrapper);
 }
 
-export { initApp, refreshPage };
+export { initApp, refreshPage, updateTemp };
