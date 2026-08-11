@@ -104,6 +104,7 @@ function createHighlightContainer(weather) {
     text: "Today's Highlight",
   });
 
+  const scales = [["0", "40 km/h"], ["0", "12 uv"], []];
   const maxValues = [40, 12, 0];
   const featColor = ["#378add", "#f5a623", "#f5a623"];
   const features = ["Wind Status", "UV Index", "Sunrise & Sunset"];
@@ -140,6 +141,19 @@ function createHighlightContainer(weather) {
       classArr: ["circle"],
     });
 
+    const scaleContainer = createDOM({
+      classArr: ["scale"],
+    });
+
+    scales[i].forEach((scale) => {
+      const scaleD = createDOM({
+        kind: "span",
+        text: scale,
+      });
+
+      scaleContainer.appendChild(scaleD);
+    });
+
     const subcontainer = createDOM({
       classArr: ["bottom-container"],
     });
@@ -164,6 +178,7 @@ function createHighlightContainer(weather) {
 
     container.appendChild(title);
     container.appendChild(gaugeContainer);
+    container.appendChild(scaleContainer);
     container.appendChild(subcontainer);
 
     featuresContainer.appendChild(container);

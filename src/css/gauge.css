@@ -37,6 +37,15 @@
   background-color: var(--clr-hl-bg);
 }
 
+.scale {
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+  margin-top: 6px;
+  font-size: 11px;
+  color: #888;
+}
+
 @property --percent {
   syntax: "<percentage>";
   inherits: true;
