@@ -17,6 +17,14 @@
   transition: --percent 0.3s ease;
 }
 
+.gauge.suntime {
+  margin-top: 10px;
+}
+
+.circle.suntime {
+  transform: scale(0.88);
+}
+
 .gauge-container {
   position: relative;
 
@@ -30,11 +38,32 @@
   width: 200px;
   aspect-ratio: 1/1;
 
-  transform: scale(0.7);
+  transform: scale(0.8);
 
   border-radius: 50%;
 
   background-color: var(--clr-hl-bg);
+}
+
+.sky-marker {
+  z-index: 1;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 20px;
+  height: 20px;
+  margin-left: -10px;
+  margin-bottom: -10px;
+  transform-origin: center 90px;
+  transition: transform 0.3s ease;
+  filter: drop-shadow(var(--drop-shadow-sm));
+}
+
+.sky-marker svg {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  display: block;
 }
 
 .scale {

@@ -22,6 +22,7 @@ import {
   convertTo12Format,
   convertToSecs,
 } from "../utils/utilities";
+import { createElement, Sun } from "lucide";
 
 const iconMap = {
   "clear-day": clearDay,
@@ -147,18 +148,47 @@ function createHighlightContainer(weather) {
       classArr: ["gauge-container"],
     });
 
+    const circleHider = createDOM({
+      classArr: ["circle"],
+    });
+
     const gauge = createDOM({
       classArr: ["gauge"],
     });
     let value = datas[i];
-    if (i == 2) value = convertToSecs(datas[i]);
-    const percentage = (value - minValues[i]) / maxValues[i];
-    gauge.style.setProperty("--percent", (percentage / 2) * 100 + "%");
-    gauge.style.setProperty("--clr-gauge", featColor[i]);
+    let percentage;
+    if (i == 2) {
+      const sunrise = minValues[2];
+      const sunset = maxValues[2];
+      const nowSecs = convertToSecs(value);
 
-    const circleHider = createDOM({
-      classArr: ["circle"],
-    });
+      gauge.classList.add("suntime");
+      circleHider.classList.add("suntime");
+
+      percentage = Math.max(
+        0,
+        Math.min(1, (nowSecs - sunrise) / (sunset - sunrise)),
+      );
+      gauge.style.setProperty("--percent", (percentage / 2) * 100 + "%");
+      gauge.style.setProperty("--clr-gauge", featColor[i]);
+
+      const marker = createDOM({
+        classArr: ["sky-marker"],
+      });
+      const markerIcon = createElement(Sun);
+      marker.appendChild(markerIcon);
+      marker.style.color = featColor[2];
+
+      const angleDeg = -90 + percentage * 180;
+      marker.style.transform = `rotate(${angleDeg}deg) translateY(-90px) rotate(${-angleDeg}deg)`;
+
+      gaugeContainer.appendChild(gauge);
+      gaugeContainer.appendChild(marker);
+    } else {
+      percentage = (value - minValues[i]) / maxValues[i];
+      gauge.style.setProperty("--percent", (percentage / 2) * 100 + "%");
+      gauge.style.setProperty("--clr-gauge", featColor[i]);
+    }
 
     const scaleContainer = createDOM({
       classArr: ["scale"],
@@ -176,7 +206,9 @@ function createHighlightContainer(weather) {
     const subcontainer = createDOM({
       classArr: ["bottom-container"],
     });
-    if (i == 2) datas[i] = convertTo12Format(datas[i]).split(" ")[0];
+    if (i == 2) {
+      datas[i] = convertTo12Format(datas[i]).split(" ")[0];
+    }
     const data = createDOM({
       kind: "p",
       classArr: ["data"],
