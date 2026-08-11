@@ -3,11 +3,11 @@ function round(num, digits) {
 }
 
 function convertToFahrenheit(temp) {
-  return (parseInt(temp) * 9) / 5 + 32;
+  return (parseFloat(temp) * 9) / 5 + 32;
 }
 
 function convertToCelsius(temp) {
-  return (parseInt(temp) - 32) * (5 / 9);
+  return (parseFloat(temp) - 32) * (5 / 9);
 }
 
 function convertToSecs(time) {

@@ -347,19 +347,19 @@ function renderContent() {
     classArr: ["content", "wrapper"],
   });
 
-  const cityWeather = appState.weatherDetails;
-
-  if (!cityWeather) {
+  if (appState.error) {
     const error = createDOM({
       kind: "p",
       classArr: ["error"],
-      text: "Search for a city!",
+      text: appState.error,
     });
 
     content.appendChild(error);
 
     return content;
   }
+
+  const cityWeather = appState.weatherDetails;
 
   const condContainer = createCondContainer(cityWeather);
   const highlightContainer = createHighlightContainer(cityWeather);

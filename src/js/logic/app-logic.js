@@ -34,14 +34,15 @@ function refreshPage() {
 function initApp() {
   const appWrapper = renderAppWrapper();
 
+  // App State
+  appState.appWrapper = appWrapper;
+  appState.error = "Search for a city!";
+
   const navbar = renderNavbar();
   const content = renderContent();
 
   appWrapper.appendChild(navbar);
   appWrapper.appendChild(content);
-
-  // App State
-  appState.appWrapper = appWrapper;
 
   setUpEventListeners();
 

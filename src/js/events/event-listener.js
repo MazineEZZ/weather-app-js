@@ -6,9 +6,13 @@ async function searchWeather() {
   const searchBar = appState.searchBar;
 
   if (searchBar.value) {
+    appState.error = false;
     const city = searchBar.value.trim();
-    const result = await fetchWeatherCoords(city);
-    getWeatherDetails(result);
+    await fetchWeatherCoords(city)
+      .then((result) => getWeatherDetails(result))
+      .catch((err) => {
+        appState.error = err;
+      });
   }
   refreshPage();
 }
