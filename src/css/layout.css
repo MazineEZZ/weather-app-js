@@ -28,6 +28,83 @@ body {
   padding-bottom: 0px;
 }
 
+.navbar .container {
+  display: flex;
+  align-items: center;
+}
+
+.navbar #logo {
+  display: flex;
+  justify-content: center;
+}
+
+.navbar #toggle-temp {
+  background-color: var(--clr-toggle);
+
+  border-radius: 50%;
+
+  width: 30px;
+  height: 30px;
+
+  margin-right: var(--space-lg);
+
+  transition: 0.2s ease;
+}
+
+.navbar #toggle-temp:hover {
+  background-color: var(--clr-toggle-hover);
+}
+
+.navbar #toggle-temp:active {
+  transform: scale(1.1);
+}
+
+.navbar #search-bar,
+#search-btn {
+  background-color: var(--clr-primary);
+  border-radius: var(--radius-xl);
+  color: var(--clr-text-search);
+  padding: 6px;
+}
+
+.navbar #search-bar {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.navbar #search-bar:focus,
+#search-bar:active {
+  border: none;
+  outline: none;
+}
+
+.navbar #search-btn {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.navbar #search-btn:hover {
+  background-color: var(--clr-primary-hover);
+}
+
+/* COMPONENTS */
+svg {
+  pointer-events: none;
+}
+
+button {
+  background: transparent;
+  border: none;
+}
+
+input {
+  border: none;
+}
+
 /* CONTENT */
 .content {
   display: grid;

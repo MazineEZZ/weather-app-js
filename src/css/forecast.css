@@ -6,9 +6,16 @@
 .forecast-container .day-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--space-sm, 12px);
 
-  padding: var(--space-xs) 0;
+  padding: var(--space-sm, 10px) 0;
+  border-bottom: 1px solid var(--clr-border);
+}
+
+.forecast-container .day-container:last-child {
+  border-bottom: none;
 }
 
 .forecast-container .day-container > * {
@@ -22,9 +29,21 @@
 }
 
 .forecast-container .date {
+  width: 60px;
+  flex-shrink: 0;
+  font-size: var(--fs-sm, 0.85rem);
   color: var(--clr-text-muted);
 }
 
 .forecast-container .temp {
-  font-weight: var(--fw-regular);
+  width: 90px;
+  flex-shrink: 0;
+  font-size: var(--fs-md, 1rem);
+  font-weight: var(--fw-semibold, 600);
+}
+
+.forecast-container .date:last-child {
+  width: auto;
+  margin-left: auto;
+  text-align: right;
 }

@@ -1,5 +1,6 @@
 import { appState } from "../global/state";
 import { createDOM } from "../utils/dom-utils";
+import { createElement, Search, Sun } from "lucide";
 
 function renderNavbar() {
   const navbar = createDOM({
@@ -11,8 +12,9 @@ function renderNavbar() {
     kind: "h1",
     id: "logo",
     same: true,
-    text: "Weatherz",
+    text: "Wheteo",
   });
+  logo.appendChild(createElement(Sun));
 
   const container = createDOM({
     classArr: ["container"],
@@ -36,8 +38,8 @@ function renderNavbar() {
   const searchBtn = createDOM({
     kind: "button",
     id: "search-btn",
-    text: "🔍",
   });
+  searchBtn.appendChild(createElement(Search));
 
   appState.searchBar = searchBar;
 

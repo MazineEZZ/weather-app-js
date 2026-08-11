@@ -104,6 +104,8 @@ function createHighlightContainer(weather) {
     text: "Today's Highlight",
   });
 
+  const maxValues = [40, 12, 0];
+  const featColor = ["#378add", "#f5a623", "#f5a623"];
   const features = ["Wind Status", "UV Index", "Sunrise & Sunset"];
   const datas = [weather["windspeed"], weather["uvindex"], "0"];
   const dataUnits = ["km/h", "uv", ""];
@@ -123,6 +125,21 @@ function createHighlightContainer(weather) {
       text: feat,
     });
 
+    const gaugeContainer = createDOM({
+      classArr: ["gauge-container"],
+    });
+
+    const gauge = createDOM({
+      classArr: ["gauge"],
+    });
+    const percentage = datas[i] / maxValues[i];
+    gauge.style.setProperty("--percent", (percentage / 2) * 100 + "%");
+    gauge.style.setProperty("--clr-gauge", featColor[i]);
+
+    const circleHider = createDOM({
+      classArr: ["circle"],
+    });
+
     const subcontainer = createDOM({
       classArr: ["bottom-container"],
     });
@@ -139,10 +156,14 @@ function createHighlightContainer(weather) {
       text: dataUnits[i],
     });
 
+    gaugeContainer.appendChild(circleHider);
+    gaugeContainer.appendChild(gauge);
+
     subcontainer.appendChild(data);
     subcontainer.appendChild(dataUnit);
 
     container.appendChild(title);
+    container.appendChild(gaugeContainer);
     container.appendChild(subcontainer);
 
     featuresContainer.appendChild(container);
@@ -226,7 +247,6 @@ function createForecastContainer(weather) {
   return forecastContainer;
 }
 
-// eslint-disable-next-line no-unused-vars
 function createMapContainer(weather) {
   const mapContainer = createDOM({
     id: "map-container",
@@ -242,7 +262,7 @@ function createMapContainer(weather) {
 
   const lat = weather["lat"];
   const lon = weather["lon"];
-  const url = `https://embed.windy.com/embed2.html?lat=${lat}&lon=${lon}&detailLat=${lat}&detailLon=${lon}&width=600&height=400&zoom=7&level=surface&overlay=temp&product=ecmwf&menu=&message=&marker=true`;
+  const url = `https://embed.windy.com/embed2.html?lat=${lat}&lon=${lon}&detailLat=${lat}&detailLon=${lon}&width=600&height=400&zoom=8&level=surface&overlay=temp&product=ecmwf&menu=&message=&marker=true`;
   const map = createDOM({
     kind: "iframe",
     src: url,

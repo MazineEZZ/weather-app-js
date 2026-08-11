@@ -1,0 +1,44 @@
+.gauge {
+  --percent: calc(43%/2);
+  --clr-gauge: #378add;
+  width: 200px;
+  aspect-ratio: 1/1;
+
+  background: conic-gradient(
+    from 270deg,
+    var(--clr-gauge) 0%,
+    var(--clr-gauge) var(--percent),
+    #333 var(--percent),
+    #333 50%
+  );
+
+  border-radius: 50%;
+
+  transition: --percent 0.3s ease;
+}
+
+.gauge-container {
+  position: relative;
+
+  width: 200px;
+  height: 100px;
+  overflow: hidden;
+}
+
+.circle {
+  position: absolute;
+  width: 200px;
+  aspect-ratio: 1/1;
+
+  transform: scale(0.7);
+
+  border-radius: 50%;
+
+  background-color: var(--clr-hl-bg);
+}
+
+@property --percent {
+  syntax: "<percentage>";
+  inherits: true;
+  initial-value: 0%;
+}

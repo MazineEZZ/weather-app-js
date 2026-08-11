@@ -25,6 +25,7 @@
 
   border-radius: var(--radius-xl);
   padding: var(--space-md);
+  gap: var(--space-xs);
 }
 
 .hl-container .subcontainer .title {

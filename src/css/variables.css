@@ -6,13 +6,15 @@
   --clr-primary: #469ffc;
   --clr-primary-hover: #3087e8;
   --clr-text-primary: #114072;
+  --clr-text-search: #ffffff;
   --clr-text-main: #0d0e11;
   --clr-text-muted: #64748b;
-  --clr-border: #e2e8f0;
+  --clr-border: #d1d7df;
   --clr-danger: #ef4444;
   --clr-sidebar: #f4f5f7;
-  --clr-tab-hover: #e6e6e6;
   --clr-btn-hover: #d9d9d9;
+  --clr-toggle: gold;
+  --clr-toggle-hover: rgb(229, 196, 7);
 
   /* TYPOGRAPHY */
   --font-family:
