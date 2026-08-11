@@ -1,4 +1,4 @@
-# Wheteo — Weather App
+# Wheteo
 
 A weather app built as part of [The Odin Project](https://www.theodinproject.com/) curriculum, using vanilla JavaScript and Webpack. Here's a [live preview](https://mazineezz.github.io/weather-app-js/)
 
