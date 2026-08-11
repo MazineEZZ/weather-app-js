@@ -31,3 +31,7 @@ Add your own Visual Crossing API key in `src/global/env.js`.
 ## Notes
 
 Built in 3 days as a learning project. Error handling is minimal and to the point by design, the focus was on layout, state management, and the custom gauge component.
+
+## Future Improvements
+
+This project focused more on design and styling rather than functionalities. Next time, I should give more time to design architecture, UX over UI, etc. I shouldn't rush design and style ideas just because I'm excited. Although, my rush was understandable since I had some personal responsibilites to attend to.
