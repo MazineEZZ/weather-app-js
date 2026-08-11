@@ -17,6 +17,11 @@ import thunderShowersDay from "../../assets/icons/scattered-thunderstorms-day.sv
 import thunderShowersNight from "../../assets/icons/scattered-thunderstorms-night.svg";
 import showersDay from "../../assets/icons/rainy-1-day.svg";
 import showersNight from "../../assets/icons/rainy-1-night.svg";
+import {
+  capitalize,
+  convertTo12Format,
+  convertToSecs,
+} from "../utils/utilities";
 
 const iconMap = {
   "clear-day": clearDay,
@@ -80,7 +85,7 @@ function createCondContainer(weather) {
   const cityName = createDOM({
     kind: "h4",
     classArr: ["city-name"],
-    text: weather["city-name"],
+    text: capitalize(weather["city-name"]),
   });
 
   condContainer.appendChild(details);
@@ -104,12 +109,24 @@ function createHighlightContainer(weather) {
     text: "Today's Highlight",
   });
 
-  const scales = [["0", "40 km/h"], ["0", "12 uv"], []];
-  const maxValues = [40, 12, 0];
+  const scales = [
+    ["0", "40 km/h"],
+    ["0", "12 uv"],
+    [
+      convertTo12Format(weather["sunrise"]),
+      convertTo12Format(weather["sunset"]),
+    ],
+  ];
+  const maxValues = [40, 12, convertToSecs(weather["sunset"])];
+  const minValues = [0, 0, convertToSecs(weather["sunrise"])];
   const featColor = ["#378add", "#f5a623", "#f5a623"];
   const features = ["Wind Status", "UV Index", "Sunrise & Sunset"];
-  const datas = [weather["windspeed"], weather["uvindex"], "0"];
-  const dataUnits = ["km/h", "uv", ""];
+  const datas = [weather["windspeed"], weather["uvindex"], weather["time"]];
+  const dataUnits = [
+    "km/h",
+    "uv",
+    convertTo12Format(weather["time"]).split(" ")[1],
+  ];
 
   const featuresContainer = createDOM({
     classArr: ["features-container"],
@@ -133,7 +150,9 @@ function createHighlightContainer(weather) {
     const gauge = createDOM({
       classArr: ["gauge"],
     });
-    const percentage = datas[i] / maxValues[i];
+    let value = datas[i];
+    if (i == 2) value = convertToSecs(datas[i]);
+    const percentage = (value - minValues[i]) / maxValues[i];
     gauge.style.setProperty("--percent", (percentage / 2) * 100 + "%");
     gauge.style.setProperty("--clr-gauge", featColor[i]);
 
@@ -157,7 +176,7 @@ function createHighlightContainer(weather) {
     const subcontainer = createDOM({
       classArr: ["bottom-container"],
     });
-
+    if (i == 2) datas[i] = convertTo12Format(datas[i]).split(" ")[0];
     const data = createDOM({
       kind: "p",
       classArr: ["data"],

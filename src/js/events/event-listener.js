@@ -18,6 +18,8 @@ function getWeatherDetails(json) {
 
   const currCond = json.currentConditions;
 
+  console.log(json);
+
   // Coords
   weatherDetails["lat"] = json.latitude;
   weatherDetails["lon"] = json.longitude;
@@ -34,8 +36,12 @@ function getWeatherDetails(json) {
   weatherDetails["rain-probability"] = currCond.precipprob;
   weatherDetails["humidity"] = currCond.humidity;
   weatherDetails["uvindex"] = currCond.uvindex;
-  weatherDetails["sunrise"] = currCond.sunrise;
-  weatherDetails["sunset"] = currCond.sunset;
+  weatherDetails["time"] = currCond.datetime.split(":").splice(0, 2).join(":");
+  weatherDetails["sunrise"] = currCond.sunrise
+    .split(":")
+    .splice(0, 2)
+    .join(":");
+  weatherDetails["sunset"] = currCond.sunset.split(":").splice(0, 2).join(":");
 
   // Forecast
   weatherDetails["forecast"] = json.days
